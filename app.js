@@ -25,6 +25,15 @@ function supprimerEmploye(id) {
   }
 }
 
+function modifierEmploye(id, nouveauNom, nouveauPoste) {
+  const employe = employes.find(emp => emp.id === id);
+  if (employe) {
+    if (nouveauNom) employe.nom = nouveauNom;
+    if (nouveauPoste) employe.poste = nouveauPoste;
+  }
+
+}
+
 // Fonction pour gérer l'ajout d'un employé via l'interface
 function ajouterEmployeManuel() {
   const nom = document.getElementById('ajout-nom').value;
@@ -41,6 +50,18 @@ function supprimerEmployeManuel() {
   const id = parseInt(document.getElementById('supprimer-id').value, 10);
   if (!isNaN(id)) {
     supprimerEmploye(id);
+    afficherEmployes();
+  }
+}
+
+// Fonction pour gérer la modification d'un employé via l'interface
+function modifierEmployeManuel() {
+  const id = parseInt(document.getElementById('modifier-id').value, 10);
+  const nouveauNom = document.getElementById('modifier-nom').value;
+  const nouveauPoste = document.getElementById('modifier-poste').value;
+
+  if (!isNaN(id)) {
+    modifierEmploye(id, nouveauNom, nouveauPoste);
     afficherEmployes();
   }
 }
